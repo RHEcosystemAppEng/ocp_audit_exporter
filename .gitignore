@@ -1,9 +1,11 @@
 # Binaries for programs and plugins
+ocp_audit_exporter
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
+*.swp
 
 # Test binary, built with `go test -c`
 *.test

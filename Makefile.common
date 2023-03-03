@@ -1,0 +1,28 @@
+GIT_COMMIT               ?= $(shell git rev-parse --short HEAD)
+GIT_BRANCH               ?= $(shell git rev-parse --abbrev-ref HEAD)
+VERSION                  ?= $(shell cat VERSION)
+
+GO                       ?= go
+GOBUILD						       ?= $(GO) build
+GOBUILD_FLAGS            ?= -ldflags "-X main.KCEVersion=$(VERSION) -X main.KCEBranch=$(GIT_BRANCH) -X main.KCERevision=$(GIT_COMMIT)" 
+
+BINARY_NAME				       ?= ocp_audit_exporter
+
+
+### Building Rules
+################################################################################
+build:
+	@echo "Building Openshift Container Platform Audit Exporter"
+	@$(GOBUILD) -o $(BINARY_NAME) $(GOBUILD_FLAGS) ocp_audit_exporter.go
+
+### Testing Rules
+################################################################################
+unit_tests:
+	@echo "TODO unit tests"
+	@go test
+
+
+### Cleanning Rules
+################################################################################
+clean_go:
+	@go clean
